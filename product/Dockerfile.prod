@@ -1,0 +1,22 @@
+# Build stage
+FROM golang:1.23-alpine AS build
+
+WORKDIR /api
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+
+RUN go build -o product .
+
+# Production stage
+FROM scratch
+
+WORKDIR /api
+
+COPY --from=build /api/product .
+
+EXPOSE 5200
+
+ENV GO_ENV=production

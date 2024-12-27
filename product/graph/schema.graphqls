@@ -1,0 +1,75 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+# scalar JSONObject
+
+type Product {
+  id: ID!
+  sku: String!
+  brand: String!
+  name: String!
+  colorway: String!
+  gender: String!
+  silhouette: String!
+  releaseYear: String!
+  releaseDate: String!
+  retailPrice: Int!
+  estimatedMarketValue: Int!
+  story: String
+  image: Image
+}
+
+type Image {
+  original: String
+  small: String
+  thumbnail: String
+}
+
+# Queries
+type Query {
+  products: [Product!]!
+  productByID(id: ID!): Product
+  featuredProducts(count: Int!): [Product!]!
+}
+
+# # Filters for querying products
+# input ProductFilter {
+#   brand: String
+#   name: String
+#   colorway: String
+#   gender: String
+#   releaseYear: String
+#   releaseDate: String
+#   retailPrice: Int
+# }
+
+# # Input for creating or updating a product
+# input NewProduct {
+#   sku: String!
+#   brand: String!
+#   name: String!
+#   colorway: String!
+#   gender: String!
+#   silhouette: String!
+#   releaseYear: String!
+#   releaseDate: String!
+#   retailPrice: Int!
+#   estimatedMarketValue: Int
+#   story: String
+#   image: ImageInput
+#   links: JSON
+# }
+
+# input ImageInput {
+#   original: String
+#   small: String
+#   thumbnail: String
+# }
+
+# # Mutations
+# type Mutation {
+#   createProduct(input: NewProduct!): Product!
+#   updateProduct(id: ID!, input: NewProduct!): Product!
+#   removeProduct(id: ID!): Product!
+# }
